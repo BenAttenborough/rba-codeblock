@@ -11,15 +11,6 @@ const { CodeEditor } = wp.components;
 const { __ } = wp.i18n;
 const { registerBlockType, PlainText } = wp.blocks;
 
-function editCode() {
-    return (
-        <CodeEditor
-            value={ '<p>This is some <b>HTML</b> code that will have syntax highlighting!</p>' }
-            onChange={ value => console.log( value ) }
-        />
-    );
-}
-
 /**
  * Register block
  */
@@ -42,16 +33,6 @@ export default registerBlockType(
         },
         edit: props => {
             const { attributes: { content }, className, setAttributes } = props;
-            // Perhaps just insert a code div
-            // with the content in it and use code mirror to style it
-            // but would need to detect changes on it?
-            /*
-            <plainText
-                className="code"
-                value={ content }
-                onChange={ ( content ) => setAttributes( { content } ) }
-             />
-            */
             return (
                 <CodeEditor
                     value={ content }
