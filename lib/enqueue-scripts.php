@@ -38,13 +38,11 @@ function jsforwpblocks_scripts()
 {
     // Make paths variables so we don't write em twice ;)
     $blockPath = '../assets/js/frontend.blocks.js';
-    $prismPath = '../assets/js/prism.js';
     $codemirrorPath = '../assets/js/codemirror/lib/codemirror.js';
     $codemirrorHTMLPath = '../assets/js/codemirror/mode/htmlmixed/htmlmixed.js';
     $codemirrorJSPath = '../assets/js/codemirror/mode/javascript/javascript.js';
-    $testPath = '../assets/js/test.js';
+    $appPath = '../assets/js/app.js';
     $stylePath = '../assets/css/blocks.style.css';
-    $prismStylePath = '../assets/css/prism.css';
     $codemirrorStylePath = '../assets/css/codemirror.css';
 
     if( !is_admin() ) {
@@ -55,13 +53,7 @@ function jsforwpblocks_scripts()
             [],
             filemtime( plugin_dir_path(__FILE__) . $blockPath )
         );
-        // Enqueue prism js on front end
-        wp_enqueue_script(
-            'jsforwp-prism',
-            plugins_url( $prismPath, __FILE__ ),
-            [],
-            filemtime( plugin_dir_path(__FILE__) . $prismPath )
-        );
+
         // Enqueue codemirror js on front end
         wp_enqueue_script(
             'jsforwp-codemirror',
@@ -85,12 +77,12 @@ function jsforwpblocks_scripts()
             [],
             filemtime( plugin_dir_path(__FILE__) . $codemirrorJSPath )
         );
-        // Enqueue test js on front end
+        // Enqueue app js on front end
         wp_enqueue_script(
-            'jsforwp-test',
-            plugins_url( $testPath, __FILE__ ),
+            'jsforwp-app',
+            plugins_url( $appPath, __FILE__ ),
             [ 'jquery' ],
-            filemtime( plugin_dir_path(__FILE__) . $testPath )
+            filemtime( plugin_dir_path(__FILE__) . $appPath )
         );
     }
 
@@ -100,14 +92,6 @@ function jsforwpblocks_scripts()
         plugins_url($stylePath, __FILE__),
         [ 'wp-blocks' ],
         filemtime(plugin_dir_path(__FILE__) . $stylePath )
-    );
-
-    // Enqueue prism styles on front and backend
-    wp_enqueue_style(
-        'jsforwp-prism',
-        plugins_url($prismStylePath, __FILE__),
-        [ 'wp-blocks' ],
-        filemtime(plugin_dir_path(__FILE__) . $prismStylePath )
     );
 
     // Enqueue codemirror styles on front and backend
