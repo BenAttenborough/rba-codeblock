@@ -3,13 +3,24 @@
  */
 import icon from './icon';
 import './style.scss';
-const { CodeEditor } = wp.components;
+//const { CodeEditor } = wp.components;
+
+const Codemirror = require('codemirror');
 
 /**
  * Internal block libraries
  */
 const { __ } = wp.i18n;
 const { registerBlockType, PlainText } = wp.blocks;
+
+/**
+ * Class to render block
+ */
+class RBAcodeHighlighter extends Component {
+    render () {
+        return "Placeholder";
+    }
+}
 
 /**
  * Register block
