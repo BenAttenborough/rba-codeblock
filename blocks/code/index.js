@@ -16,15 +16,6 @@ const {
     PlainText,
     } = wp.blocks;
 
-//function getSettings( attributes ) {
-//    let settings = [];
-//    for( let attribute in attributes ) {
-//        let value = attributes[ attribute ];
-//        settings.push( <li>{ attribute }: { value }</li> );
-//    }
-//    return settings;
-//}
-
 /**
  * Register block
  */
@@ -47,16 +38,15 @@ export default registerBlockType(
             },
         },
         edit: props => {
-            const { attributes: { content }, isSelected, className, setAttributes } = props;
+            const { attributes: { content, radioControl }, isSelected, className, setAttributes } = props;
 
             return [
                 isSelected && <Inspector { ...{ setAttributes, ...props} } />,
-                //isSelected && <Controls { ...{ setAttributes, ...props } }/>,
                 <CodeEditor
                     value={ content }
                     settings={Object.assign(  {
                 codemirror: {
-                mode: 'css',
+                mode: radioControl,
                 lint: true
             } }) }
                     onChange={ ( content ) => setAttributes( { content } ) }
