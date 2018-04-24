@@ -36,6 +36,8 @@ add_action( 'enqueue_block_editor_assets', 'jsforwpblocks_editor_scripts' );
  */
 function jsforwpblocks_scripts()
 {
+    $defaultTheme = 'material.css';
+
     // Make paths variables so we don't write em twice ;)
     $blockPath = '../assets/js/frontend.blocks.js';
     $codemirrorPath = '../assets/js/codemirror/lib/codemirror.js';
@@ -44,6 +46,7 @@ function jsforwpblocks_scripts()
     $appPath = '../assets/js/app.js';
     $stylePath = '../assets/css/blocks.style.css';
     $codemirrorStylePath = '../assets/css/codemirror.css';
+    $codemirrorDefaultThemeStylePath = '../assets/css/theme/' . $defaultTheme;
 
     if( !is_admin() ) {
         // Enqueue the bundled block JS file
@@ -101,6 +104,12 @@ function jsforwpblocks_scripts()
             plugins_url($codemirrorStylePath, __FILE__),
             [ 'wp-blocks' ],
             filemtime(plugin_dir_path(__FILE__) . $codemirrorStylePath )
+        );
+        wp_enqueue_style(
+            'jsforwp-codemirror-eclipse-styles',
+            plugins_url($codemirrorDefaultThemeStylePath, __FILE__),
+            [ 'wp-blocks' ],
+            filemtime(plugin_dir_path(__FILE__) . $codemirrorDefaultThemeStylePath )
         );
     }
 

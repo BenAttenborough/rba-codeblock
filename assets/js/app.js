@@ -11,7 +11,8 @@ jQuery(document).ready(function ($) {
             value: $unescaped,
             mode: 'javascript',
             lineNumbers: !$this.is('.inline'),
-            readOnly: true
+            readOnly: true,
+            theme: 'material'
         });
 
     });

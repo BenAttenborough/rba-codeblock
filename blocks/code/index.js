@@ -1,26 +1,29 @@
 /**
  * Block dependencies
  */
+import Inspector from './inspector';
 import icon from './icon';
+//import attributes from './attributes';
 import './style.scss';
-//const { CodeEditor } = wp.components;
-
-const Codemirror = require('codemirror');
+const { CodeEditor } = wp.components;
 
 /**
  * Internal block libraries
  */
 const { __ } = wp.i18n;
-const { registerBlockType, PlainText } = wp.blocks;
+const {
+    registerBlockType,
+    PlainText,
+    } = wp.blocks;
 
-/**
- * Class to render block
- */
-class RBAcodeHighlighter extends Component {
-    render () {
-        return "Placeholder";
-    }
-}
+//function getSettings( attributes ) {
+//    let settings = [];
+//    for( let attribute in attributes ) {
+//        let value = attributes[ attribute ];
+//        settings.push( <li>{ attribute }: { value }</li> );
+//    }
+//    return settings;
+//}
 
 /**
  * Register block
@@ -38,18 +41,27 @@ export default registerBlockType(
             __('Message', 'jsforwpblocks'),
         ],
         attributes: {
-            content: {
+            radioControl: {
                 type: 'string',
+                default: 'css'
             },
         },
         edit: props => {
-            const { attributes: { content }, className, setAttributes } = props;
-            return (
+            const { attributes: { content }, isSelected, className, setAttributes } = props;
+
+            return [
+                isSelected && <Inspector { ...{ setAttributes, ...props} } />,
+                //isSelected && <Controls { ...{ setAttributes, ...props } }/>,
                 <CodeEditor
                     value={ content }
+                    settings={Object.assign(  {
+                codemirror: {
+                mode: 'css',
+                lint: true
+            } }) }
                     onChange={ ( content ) => setAttributes( { content } ) }
                 />
-            );
+            ];
         },
         save: props => {
             const { attributes: { content } } = props;
