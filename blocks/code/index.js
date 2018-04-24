@@ -30,13 +30,13 @@ export default registerBlockType(
             __('Syntax highlighting', 'rba-codeblock'),
         ],
         attributes: {
-            radioControl: {
+            language: {
                 type: 'string',
                 default: 'css'
-            },
+            }
         },
         edit: props => {
-            const { attributes: { content, radioControl }, isSelected, setAttributes } = props;
+            const { attributes: { content, language }, isSelected, setAttributes } = props;
 
             return [
                 isSelected && <Inspector { ...{ setAttributes, ...props} } />,
@@ -44,7 +44,7 @@ export default registerBlockType(
                     value={ content }
                     settings={Object.assign(  {
                 codemirror: {
-                mode: radioControl,
+                mode: language,
                 lint: true
             } }) }
                     onChange={ ( content ) => setAttributes( { content } ) }
