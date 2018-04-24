@@ -3,7 +3,6 @@
  */
 import Inspector from './inspector';
 import icon from './icon';
-//import attributes from './attributes';
 import './style.scss';
 const { CodeEditor } = wp.components;
 
@@ -20,16 +19,15 @@ const {
  * Register block
  */
 export default registerBlockType(
-    'jsforwpblocks/code',
+    'rba-codeblock/code',
     {
-        title: __('Example - Code', 'jsforwpblocks'),
-        description: __('How to use the Code component for building your own editable blocks.', 'jsforwpblocks'),
+        title: __('Code snippet', 'rba-codeblock'),
+        description: __('Write syntax highlighted snippet', 'rba-codeblock'),
         category: 'common',
         icon: icon,
         keywords: [
-            __('Banner', 'jsforwpblocks'),
-            __('Call to Action', 'jsforwpblocks'),
-            __('Message', 'jsforwpblocks'),
+            __('Code', 'rba-codeblock'),
+            __('Syntax highlighting', 'rba-codeblock'),
         ],
         attributes: {
             radioControl: {
@@ -38,7 +36,7 @@ export default registerBlockType(
             },
         },
         edit: props => {
-            const { attributes: { content, radioControl }, isSelected, className, setAttributes } = props;
+            const { attributes: { content, radioControl }, isSelected, setAttributes } = props;
 
             return [
                 isSelected && <Inspector { ...{ setAttributes, ...props} } />,

@@ -36,16 +36,16 @@ export default class Inspector extends Component {
         return (
             <InspectorControls>
                 <PanelBody
-                    title={ __( 'Panel Body Title', 'jsforwpblocks' ) }
+                    title={ __( 'Panel Body Title', 'rba-codeblock' ) }
                 >
                     <PanelRow>
-                        <p>{ __( 'Panel Body Copy', 'jsforwpblocks' ) }</p>
+                        <p>{ __( 'Panel Body Copy', 'rba-codeblock' ) }</p>
                     </PanelRow>
                 </PanelBody>
 
                 <PanelBody>
                     <RadioControl
-                        label={ __( 'Radio Control', 'jsforwpblocks' ) }
+                        label={ __( 'Radio Control', 'rba-codeblock' ) }
                         selected={ radioControl }
                         options={ [
                             { label: 'HTML', value: 'html' },

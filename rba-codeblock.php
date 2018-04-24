@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: Gutenberg - Code blocks
+ * Plugin Name: Gutenberg - Code block snippet editor
  * Plugin URI: https://github.com/BenAttenborough/rba-codeblock
  * Description: Gutenberg block for displaying syntax highlighted snippets to blog posts.
  * Text Domain: rba-codeblock
