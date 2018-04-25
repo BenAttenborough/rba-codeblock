@@ -28,6 +28,11 @@ export default class Inspector extends Component {
     render() {
         const { attributes: { radioControl, language }, setAttributes } = this.props;
 
+        function onChangeLanguage (language) {
+            setAttributes( { language } );
+            //this.editorInstance.setOption( 'mode', language );
+        }
+
         return (
             <InspectorControls>
                 <PanelBody
@@ -42,9 +47,9 @@ export default class Inspector extends Component {
                         options={ [
                             { label: 'HTML', value: 'html' },
                             { label: 'CSS', value: 'css' },
-                            { label: 'JS', value: 'js' }
+                            { label: 'JS', value: 'javascript' }
                         ] }
-                        onChange={ language => setAttributes( { language } ) }
+                        onChange={ onChangeLanguage }
                     />
                 </PanelBody>
 

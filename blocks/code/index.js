@@ -39,16 +39,21 @@ export default registerBlockType(
             const { attributes: { content, language }, isSelected, setAttributes } = props;
 
             return [
-                isSelected && <Inspector { ...{ setAttributes, ...props} } />,
-                <CodeEditor
-                    value={ content }
-                    settings={Object.assign(  {
+                isSelected && <Inspector { ...{setAttributes, ...props} } />,
+                <div>
+                    <div>
+                        <h4>Language: {language}</h4>
+                    </div>
+                    <CodeEditor
+                        value={ content }
+                        settings={Object.assign(  {
                 codemirror: {
                 mode: language,
                 lint: true
             } }) }
-                    onChange={ ( content ) => setAttributes( { content } ) }
-                />
+                        onChange={ ( content ) => setAttributes( { content } ) }
+                    />
+                </div>
             ];
         },
         save: props => {
