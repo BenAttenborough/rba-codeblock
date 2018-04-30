@@ -1,5 +1,5 @@
 jQuery(document).ready(function ($) {
-    $('.code').each(function () {
+    $('.RBACode').each(function () {
 
         var $this = $(this),
             $code = $this.html(),

@@ -28,9 +28,11 @@ export default class Inspector extends Component {
     render() {
         const { attributes: { radioControl, language }, setAttributes } = this.props;
 
+        var myProps = this.props;
+        var editorRef = this.editorRef;
+
         function onChangeLanguage (language) {
             setAttributes( { language } );
-            //this.editorInstance.setOption( 'mode', language );
         }
 
         return (

@@ -33,36 +33,41 @@ export default registerBlockType(
             language: {
                 type: 'string',
                 default: 'css'
+            },
+            content: {
+                source: 'children',
+                selector: '.RBACode',
             }
         },
         edit: props => {
             const { attributes: { content, language }, isSelected, setAttributes } = props;
-
             return [
                 isSelected && <Inspector { ...{setAttributes, ...props} } />,
                 <div>
                     <div>
                         <h4>Language: {language}</h4>
                     </div>
-                    <CodeEditor
+                    <CodeEditor editorRef={ ( ref ) => this.editorInstance = ref }
                         value={ content }
                         settings={Object.assign(  {
                 codemirror: {
                 mode: language,
-                lint: true
+                lint: true,
+                lineNumbers: true
             } }) }
-                        onChange={ ( content ) => setAttributes( { content } ) }
+                        onChange={ ( content, language ) => setAttributes( { content }, {language}) }
+
                     />
                 </div>
             ];
         },
         save: props => {
-            const { attributes: { content } } = props;
+            const { attributes: { content, language } } = props;
             return (
                 <div>
-                    <div class="message-body">
-                        <p>Code below:</p>
-                        <div className="code">{ content }</div>
+                    <div className="message-body">
+                        <p>{language}</p>
+                        <div className="RBACode">{ content }</div>
                     </div>
                 </div>
             );
