@@ -41,8 +41,9 @@ export default registerBlockType(
         },
         edit: props => {
             const { attributes: { content, language }, isSelected, setAttributes } = props;
+            const editor = this;
             return [
-                isSelected && <Inspector { ...{setAttributes, ...props} } />,
+                isSelected && <Inspector { ...{setAttributes, ...props, ...{ editor: editor } }  } />,
                 <div>
                     <div>
                         <h4>Language: {language}</h4>
@@ -54,7 +55,10 @@ export default registerBlockType(
                 mode: language,
                 lint: true,
                 lineNumbers: true
-            } }) }
+            } },
+            	window._wpGutenbergCodeEditorSetting
+
+            ) }
                         onChange={ ( content, language ) => setAttributes( { content }, {language}) }
 
                     />
