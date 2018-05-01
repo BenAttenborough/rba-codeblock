@@ -45,7 +45,7 @@ export default class Inspector extends Component {
                         label={ __( 'Language', 'rba-codeblock' ) }
                         selected={ language }
                         options={ [
-                            { label: 'HTML', value: 'html' },
+                            { label: 'HTML', value: 'htmlmixed' },
                             { label: 'CSS', value: 'css' },
                             { label: 'JS', value: 'javascript' }
                         ] }

@@ -42,24 +42,25 @@ export default registerBlockType(
         edit: props => {
             const { attributes: { content, language }, isSelected, setAttributes } = props;
             return [
-                isSelected && <Inspector { ...{setAttributes, ...props, ...{ editor: this } }  } />,
+                isSelected && <Inspector { ...{setAttributes, ...props, ...{editor: this}}  } />,
                 <div>
                     <div>
                         <h4>Language: {language}</h4>
                     </div>
                     <CodeEditor editorRef={ ( ref ) => this.editorInstance = ref }
-                        value={ content }
-                        settings={Object.assign(  {
-                codemirror: {
-                mode: language,
-                lint: true,
-                lineNumbers: true
-            } },
-            	window._wpGutenbergCodeEditorSetting
+                                multiline="p"
+                                value={ content }
+                                settings={Object.assign(  {
+                                    codemirror: {
+                                    mode: language,
+                                    lint: true,
+                                    lineNumbers: true,
+                                    lineSeparator: '\n'
+                                } },
+                                    window._wpGutenbergCodeEditorSetting
 
-            ) }
-                        onChange={ ( content, language ) => setAttributes( { content }, {language}) }
-
+                                ) }
+                                onChange={ ( content, language ) => setAttributes( { content }, {language}) }
                     />
                 </div>
             ];
@@ -70,7 +71,9 @@ export default registerBlockType(
                 <div>
                     <div className="message-body">
                         <p>{language}</p>
-                        <div className="RBACode">{ content }</div>
+                            <pre className="RBACode">
+                                { content }
+                            </pre>
                     </div>
                 </div>
             );
