@@ -2,6 +2,7 @@
  * Block dependencies
  */
 import Inspector from './inspector';
+import Controls from './controls';
 import icon from './icon';
 import './style.scss';
 const { CodeEditor } = wp.components;
@@ -12,8 +13,15 @@ const { CodeEditor } = wp.components;
 const { __ } = wp.i18n;
 const {
     registerBlockType,
-    PlainText,
+    BlockControls,
     } = wp.blocks;
+const {
+    Dashicon,
+    Toolbar,
+    Button,
+    Tooltip,
+    } = wp.components;
+
 
 /**
  * Register block
@@ -30,6 +38,12 @@ export default registerBlockType(
             __('Syntax highlighting', 'rba-codeblock'),
         ],
         attributes: {
+            textAlignment: {
+                type: 'string',
+            },
+            blockAlignment: {
+                type: 'string',
+            },
             language: {
                 type: 'string',
                 default: 'css'
@@ -37,30 +51,33 @@ export default registerBlockType(
             content: {
                 source: 'children',
                 selector: '.RBACode',
+            },
+            lineNumbers: {
+                type: 'boolean',
+                default: false
             }
         },
         edit: props => {
-            const { attributes: { content, language }, isSelected, setAttributes } = props;
+            const { attributes: { textAlignment, blockAlignment, content, language, lineNumbers }, isSelected, setAttributes } = props;
             return [
-                isSelected && <Inspector { ...{setAttributes, ...props, ...{editor: this}}  } />,
+                isSelected && (<Inspector { ...{setAttributes, ...props, ...{editor: this}}  } />),
+                isSelected && (<Controls { ...{setAttributes, ...props, ...{editor: this}}  } />),
                 <div>
                     <div>
                         <h4>Language: {language}</h4>
                     </div>
                     <CodeEditor editorRef={ ( ref ) => this.editorInstance = ref }
-                                multiline="p"
                                 value={ content }
                                 settings={Object.assign(  {
                                     codemirror: {
                                     mode: language,
                                     lint: true,
-                                    lineNumbers: true,
-                                    lineSeparator: '\n'
+                                    lineNumbers: lineNumbers,
                                 } },
                                     window._wpGutenbergCodeEditorSetting
 
                                 ) }
-                                onChange={ ( content, language ) => setAttributes( { content }, {language}) }
+                                onChange={ ( content, language, lineNumbers ) => setAttributes( { content }, {language}, {lineNumbers}) }
                     />
                 </div>
             ];
