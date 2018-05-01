@@ -41,9 +41,8 @@ export default registerBlockType(
         },
         edit: props => {
             const { attributes: { content, language }, isSelected, setAttributes } = props;
-            const editor = this;
             return [
-                isSelected && <Inspector { ...{setAttributes, ...props, ...{ editor: editor } }  } />,
+                isSelected && <Inspector { ...{setAttributes, ...props, ...{ editor: this } }  } />,
                 <div>
                     <div>
                         <h4>Language: {language}</h4>
