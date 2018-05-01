@@ -14,14 +14,12 @@ import icons from './icons';
 const { __ } = wp.i18n;
 const { Component } = wp.element;
 const {
-    BlockControls,
-    AlignmentToolbar,
-    BlockAlignmentToolbar,
+    BlockControls
     } = wp.blocks;
 const {
     Toolbar,
     Button,
-    Tooltip,
+    Tooltip
     } = wp.components;
 
 /**
@@ -34,31 +32,22 @@ export default class Inspector extends Component {
     }
 
     render() {
-        const { attributes: { blockAlignment, textAlignment, lineNumbers }, setAttributes } = this.props;
+        const { attributes: { blockAlignment, textAlignment, lineNumbers }, setAttributes, editor } = this.props;
 
         const toggleLineNumbers = function () {
             setAttributes( { lineNumbers: ! lineNumbers } );
-            console.log("Toggling line numbers");
-
+            editor.editorInstance.setOption( 'lineNumbers', ! lineNumbers );
         };
 
         return (
             <BlockControls>
-                <BlockAlignmentToolbar
-                    value={ blockAlignment }
-                    onChange={ blockAlignment => setAttributes( { blockAlignment } ) }
-                />
-                <AlignmentToolbar
-                    value={ textAlignment }
-                    onChange={ textAlignment => setAttributes( { textAlignment } ) }
-                />
                 <Toolbar>
                     <Tooltip text={ __( 'Line Numbers', 'rba-codeblock' )  }>
                         <Button
                             className={ classnames(
                                         'components-icon-button',
                                         'components-toolbar__control',
-                                        { 'is-active': lineNumbers },
+                                        { 'is-active': lineNumbers }
                                     ) }
                             onClick={ toggleLineNumbers }
                         >
