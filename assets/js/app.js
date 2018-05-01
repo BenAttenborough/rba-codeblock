@@ -3,14 +3,17 @@ jQuery(document).ready(function ($) {
 
         var $this = $(this),
             $code = $this.html(),
-            $unescaped = $('<div/>').html($code).text();
+            $unescaped = $('<div/>').html($code).text(),
+            $mode = this.dataset.mode,
+            $lineNumbers = this.dataset.linenumbers == "true";
 
         $this.empty();
 
         CodeMirror(this, {
             value: $unescaped,
-            mode: 'javascript',
+            mode: $mode,
             lineNumbers: !$this.is('.inline'),
+            //lineNumbers: $lineNumbers,
             readOnly: true,
             theme: 'material'
         });

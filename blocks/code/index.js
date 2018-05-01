@@ -13,15 +13,7 @@ const { CodeEditor } = wp.components;
 const { __ } = wp.i18n;
 const {
     registerBlockType,
-    BlockControls,
     } = wp.blocks;
-const {
-    Dashicon,
-    Toolbar,
-    Button,
-    Tooltip,
-    } = wp.components;
-
 
 /**
  * Register block
@@ -38,12 +30,6 @@ export default registerBlockType(
             __('Syntax highlighting', 'rba-codeblock'),
         ],
         attributes: {
-            textAlignment: {
-                type: 'string',
-            },
-            blockAlignment: {
-                type: 'string',
-            },
             language: {
                 type: 'string',
                 default: 'css'
@@ -58,7 +44,7 @@ export default registerBlockType(
             }
         },
         edit: props => {
-            const { attributes: { textAlignment, blockAlignment, content, language, lineNumbers }, isSelected, setAttributes } = props;
+            const { attributes: { content, language, lineNumbers }, isSelected, setAttributes } = props;
             return [
                 isSelected && (<Inspector { ...{setAttributes, ...props, ...{editor: this}}  } />),
                 isSelected && (<Controls { ...{setAttributes, ...props, ...{editor: this}}  } />),
@@ -83,12 +69,15 @@ export default registerBlockType(
             ];
         },
         save: props => {
-            const { attributes: { content, language } } = props;
+            const { attributes: { content, language, lineNumbers } } = props;
             return (
                 <div>
                     <div className="message-body">
                         <p>{language}</p>
-                            <pre className="RBACode">
+                            <pre className="RBACode"
+                                 data-mode={language}
+                                 data-linenumbers={lineNumbers ? "true" : "false"}
+                            >
                                 { content }
                             </pre>
                     </div>
