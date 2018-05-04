@@ -21,12 +21,14 @@ $light: rgba(254, 243, 224, 0.52);
 
 }
 
-.message-body p {
+.RBACode-heading {
   background-color: rgb(221, 221, 221);
   color: black;
   margin: 0;
   padding: 5px;
   padding-left: 10px;
+  border: solid 1px #333;
+  border-bottom: none;
 }
 
 .RBACode {
@@ -36,4 +38,6 @@ $light: rgba(254, 243, 224, 0.52);
 
 .CodeMirror {
   height: auto !important;
+  border: solid 1px #333;
+  border-top: none;
 }

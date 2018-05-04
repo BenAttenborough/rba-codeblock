@@ -12,16 +12,20 @@
   .wp-block-jsforwpblocks-richtext p {
     font-size: 1.4rem; }
 
-.message-body p {
+.RBACode-heading {
   background-color: #dddddd;
   color: black;
   margin: 0;
   padding: 5px;
-  padding-left: 10px; }
+  padding-left: 10px;
+  border: solid 1px #333;
+  border-bottom: none; }
 
 .RBACode {
   margin: 0 0 1rem;
   padding: 0; }
 
 .CodeMirror {
-  height: auto !important; }
+  height: auto !important;
+  border: solid 1px #333;
+  border-top: none; }

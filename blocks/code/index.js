@@ -49,10 +49,9 @@ export default registerBlockType(
                 isSelected && (<Inspector { ...{setAttributes, ...props, ...{editor: this}}  } />),
                 isSelected && (<Controls { ...{setAttributes, ...props, ...{editor: this}}  } />),
                 <div>
-                    <div>
-                        <h4>Language: {language}</h4>
-                    </div>
-                    <CodeEditor editorRef={ ( ref ) => this.editorInstance = ref }
+                    <p className="RBACode-heading">Language: {language}</p>
+                    <CodeEditor className="RBACode"
+                                editorRef={ ( ref ) => this.editorInstance = ref }
                                 value={ content }
                                 settings={Object.assign(  {
                                     codemirror: {
@@ -72,15 +71,13 @@ export default registerBlockType(
             const { attributes: { content, language, lineNumbers } } = props;
             return (
                 <div>
-                    <div className="message-body">
-                        <p>{language}</p>
-                            <pre className="RBACode"
-                                 data-mode={language}
-                                 data-linenumbers={lineNumbers ? "true" : "false"}
-                            >
-                                { content }
-                            </pre>
-                    </div>
+                    <p className="RBACode-heading">Language: {language}</p>
+                        <pre className="RBACode"
+                             data-mode={language}
+                             data-linenumbers={lineNumbers ? "true" : "false"}
+                        >
+                            { content }
+                        </pre>
                 </div>
             );
         }
