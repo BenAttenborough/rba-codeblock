@@ -3,7 +3,7 @@
 /**
  * Enqueue block editor only JavaScript and CSS
  */
-function jsforwpblocks_editor_scripts()
+function rba_code_block_editor_scripts()
 {
 
     // Make paths variables so we don't write em twice ;)
@@ -12,7 +12,7 @@ function jsforwpblocks_editor_scripts()
 
     // Enqueue the bundled block JS file
     wp_enqueue_script(
-        'jsforwp-blocks-js',
+        'rba-code-block-blocks-js',
         plugins_url( $blockPath, __FILE__ ),
         [ 'wp-i18n', 'wp-element', 'wp-blocks', 'wp-components' ],
         filemtime( plugin_dir_path(__FILE__) . $blockPath )
@@ -20,7 +20,7 @@ function jsforwpblocks_editor_scripts()
 
     // Enqueue optional editor only styles
     wp_enqueue_style(
-        'jsforwp-blocks-editor-css',
+        'rba-code-block-blocks-editor-css',
         plugins_url( $editorStylePath, __FILE__),
         [ 'wp-blocks' ],
         filemtime( plugin_dir_path( __FILE__ ) . $editorStylePath )
@@ -28,13 +28,13 @@ function jsforwpblocks_editor_scripts()
 
 }
 // Hook scripts function into block editor hook
-add_action( 'enqueue_block_editor_assets', 'jsforwpblocks_editor_scripts' );
+add_action( 'enqueue_block_editor_assets', 'rba_code_block_editor_scripts' );
 
 
 /**
  * Enqueue front end and editor JavaScript and CSS
  */
-function jsforwpblocks_scripts()
+function rba_code_block_scripts()
 {
     $defaultTheme = 'material.css';
 
@@ -53,7 +53,7 @@ function jsforwpblocks_scripts()
     if( !is_admin() ) {
         // Enqueue the bundled block JS file
         wp_enqueue_script(
-            'jsforwp-blocks-frontend',
+            'rba-code-block-blocks-frontend',
             plugins_url( $blockPath, __FILE__ ),
             [],
             filemtime( plugin_dir_path(__FILE__) . $blockPath )
@@ -61,7 +61,7 @@ function jsforwpblocks_scripts()
 
         // Enqueue codemirror js on front end
         wp_enqueue_script(
-            'jsforwp-codemirror',
+            'rba-code-block-codemirror',
             plugins_url( $codemirrorPath, __FILE__ ),
             [],
             filemtime( plugin_dir_path(__FILE__) . $codemirrorPath )
@@ -69,14 +69,14 @@ function jsforwpblocks_scripts()
 
         // Enqueue codemirror html mode on front end
         wp_enqueue_script(
-            'jsforwp-codemirrorXML',
+            'rba-code-block-codemirrorXML',
             plugins_url( $codemirrorXMLPath, __FILE__ ),
             [],
             filemtime( plugin_dir_path(__FILE__) . $codemirrorXMLPath )
         );
         // Enqueue codemirror html mode on front end
         wp_enqueue_script(
-            'jsforwp-codemirrorHTML',
+            'rba-code-block-codemirrorHTML',
             plugins_url( $codemirrorHTMLPath, __FILE__ ),
             [],
             filemtime( plugin_dir_path(__FILE__) . $codemirrorHTMLPath )
@@ -84,7 +84,7 @@ function jsforwpblocks_scripts()
 
         // Enqueue codemirror js mode on front end
         wp_enqueue_script(
-            'jsforwp-codemirrorJS',
+            'rba-code-block-codemirrorJS',
             plugins_url( $codemirrorJSPath, __FILE__ ),
             [],
             filemtime( plugin_dir_path(__FILE__) . $codemirrorJSPath )
@@ -92,14 +92,14 @@ function jsforwpblocks_scripts()
 
         // Enqueue codemirror css mode on front end
         wp_enqueue_script(
-            'jsforwp-codemirrorCSS',
+            'rba-code-block-codemirrorCSS',
             plugins_url( $codemirrorCSSPath, __FILE__ ),
             [],
             filemtime( plugin_dir_path(__FILE__) . $codemirrorCSSPath )
         );
         // Enqueue app js on front end
         wp_enqueue_script(
-            'jsforwp-app',
+            'rba-code-block-app',
             plugins_url( $appPath, __FILE__ ),
             [ 'jquery' ],
             filemtime( plugin_dir_path(__FILE__) . $appPath )
@@ -108,7 +108,7 @@ function jsforwpblocks_scripts()
 
     // Enqueue frontend and editor block styles
     wp_enqueue_style(
-        'jsforwp-blocks',
+        'rba-code-block-blocks',
         plugins_url($stylePath, __FILE__),
         [ 'wp-blocks' ],
         filemtime(plugin_dir_path(__FILE__) . $stylePath )
@@ -117,13 +117,13 @@ function jsforwpblocks_scripts()
     // Enqueue codemirror styles on front and backend
     if( !is_admin() ) {
         wp_enqueue_style(
-            'jsforwp-codemirror-styles',
+            'rba-code-block-codemirror-styles',
             plugins_url($codemirrorStylePath, __FILE__),
             [ 'wp-blocks' ],
             filemtime(plugin_dir_path(__FILE__) . $codemirrorStylePath )
         );
         wp_enqueue_style(
-            'jsforwp-codemirror-eclipse-styles',
+            'rba-code-block-codemirror-eclipse-styles',
             plugins_url($codemirrorDefaultThemeStylePath, __FILE__),
             [ 'wp-blocks' ],
             filemtime(plugin_dir_path(__FILE__) . $codemirrorDefaultThemeStylePath )
@@ -134,4 +134,4 @@ function jsforwpblocks_scripts()
 }
 
 // Hook scripts function into block editor hook
-add_action('enqueue_block_assets', 'jsforwpblocks_scripts');
+add_action('enqueue_block_assets', 'rba_code_block_scripts');
