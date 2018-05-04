@@ -41,8 +41,10 @@ function jsforwpblocks_scripts()
     // Make paths variables so we don't write em twice ;)
     $blockPath = '../assets/js/frontend.blocks.js';
     $codemirrorPath = '../assets/js/codemirror/lib/codemirror.js';
+    $codemirrorXMLPath = '../assets/js/codemirror/mode/xml/xml.js';
     $codemirrorHTMLPath = '../assets/js/codemirror/mode/htmlmixed/htmlmixed.js';
     $codemirrorJSPath = '../assets/js/codemirror/mode/javascript/javascript.js';
+    $codemirrorCSSPath = '../assets/js/codemirror/mode/css/css.js';
     $appPath = '../assets/js/app.js';
     $stylePath = '../assets/css/blocks.style.css';
     $codemirrorStylePath = '../assets/css/codemirror.css';
@@ -65,7 +67,14 @@ function jsforwpblocks_scripts()
             filemtime( plugin_dir_path(__FILE__) . $codemirrorPath )
         );
 
-        // Enqueue codemirror html js on front end
+        // Enqueue codemirror html mode on front end
+        wp_enqueue_script(
+            'jsforwp-codemirrorXML',
+            plugins_url( $codemirrorXMLPath, __FILE__ ),
+            [],
+            filemtime( plugin_dir_path(__FILE__) . $codemirrorXMLPath )
+        );
+        // Enqueue codemirror html mode on front end
         wp_enqueue_script(
             'jsforwp-codemirrorHTML',
             plugins_url( $codemirrorHTMLPath, __FILE__ ),
@@ -73,12 +82,20 @@ function jsforwpblocks_scripts()
             filemtime( plugin_dir_path(__FILE__) . $codemirrorHTMLPath )
         );
 
-        // Enqueue codemirror html js on front end
+        // Enqueue codemirror js mode on front end
         wp_enqueue_script(
             'jsforwp-codemirrorJS',
             plugins_url( $codemirrorJSPath, __FILE__ ),
             [],
             filemtime( plugin_dir_path(__FILE__) . $codemirrorJSPath )
+        );
+
+        // Enqueue codemirror css mode on front end
+        wp_enqueue_script(
+            'jsforwp-codemirrorCSS',
+            plugins_url( $codemirrorCSSPath, __FILE__ ),
+            [],
+            filemtime( plugin_dir_path(__FILE__) . $codemirrorCSSPath )
         );
         // Enqueue app js on front end
         wp_enqueue_script(

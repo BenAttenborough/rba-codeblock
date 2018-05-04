@@ -9,6 +9,8 @@ jQuery(document).ready(function ($) {
 
         $this.empty();
 
+        console.log("Mode: " + $mode);
+
         CodeMirror(this, {
             value: $unescaped,
             mode: $mode,

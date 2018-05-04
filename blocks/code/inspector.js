@@ -26,7 +26,7 @@ export default class Inspector extends Component {
     }
 
     render() {
-        const { attributes: { radioControl, language }, setAttributes, editor } = this.props;
+        const { attributes: { language }, setAttributes, editor } = this.props;
 
         function onChangeLanguage (language) {
             setAttributes( { language } );

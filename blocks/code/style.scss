@@ -20,3 +20,20 @@ $light: rgba(254, 243, 224, 0.52);
   }
 
 }
+
+.message-body p {
+  background-color: rgb(221, 221, 221);
+  color: black;
+  margin: 0;
+  padding: 5px;
+  padding-left: 10px;
+}
+
+.RBACode {
+  margin: 0 0 1rem;
+  padding: 0;
+}
+
+.CodeMirror {
+  height: auto !important;
+}
