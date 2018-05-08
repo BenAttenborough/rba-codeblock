@@ -30,13 +30,13 @@ export default registerBlockType(
             __('Syntax highlighting', 'rba-codeblock'),
         ],
         attributes: {
-            language: {
-                type: 'string',
-                default: 'css'
-            },
             content: {
                 source: 'children',
                 selector: '.RBACode',
+            },
+            language: {
+                type: 'string',
+                default: 'css'
             },
             lineNumbers: {
                 type: 'boolean',
@@ -46,8 +46,8 @@ export default registerBlockType(
         edit: props => {
             const { attributes: { content, language, lineNumbers }, isSelected, setAttributes } = props;
             return [
-                isSelected && (<Inspector { ...{setAttributes, ...props, ...{editor: this}}  } />),
-                isSelected && (<Controls { ...{setAttributes, ...props, ...{editor: this}}  } />),
+                isSelected && <Inspector { ...{setAttributes, ...props, ...{editor: this.editorInstance}}  } />,
+                isSelected && <Controls { ...{setAttributes, ...props, ...{editor: this.editorInstance}} } />,
                 <div>
                     <p className="RBACode-heading">Language: {language}</p>
                     <CodeEditor className="RBACode"
@@ -74,7 +74,7 @@ export default registerBlockType(
                     <p className="RBACode-heading">Language: {language}</p>
                         <pre className="RBACode"
                              data-mode={language}
-                             data-linenumbers={lineNumbers ? "true" : "false"}
+                             data-linenumbers={lineNumbers}
                         >
                             { content }
                         </pre>

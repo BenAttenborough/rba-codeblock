@@ -32,11 +32,11 @@ export default class Inspector extends Component {
     }
 
     render() {
-        const { attributes: { lineNumbers }, setAttributes, editor } = this.props;
+        const { attributes: { lineNumbers }, setAttributes, editor, foo } = this.props;
 
         const toggleLineNumbers = function () {
             setAttributes( { lineNumbers: ! lineNumbers } );
-            editor.editorInstance.setOption( 'lineNumbers', ! lineNumbers );
+            editor.setOption( 'lineNumbers', ! lineNumbers );
         };
 
         return (

@@ -44,6 +44,7 @@ function rba_code_block_scripts()
     $codemirrorXMLPath = '../assets/js/codemirror/mode/xml/xml.js';
     $codemirrorHTMLPath = '../assets/js/codemirror/mode/htmlmixed/htmlmixed.js';
     $codemirrorJSPath = '../assets/js/codemirror/mode/javascript/javascript.js';
+    $codemirrorJSXPath = '../assets/js/codemirror/mode/jsx/jsx.js';
     $codemirrorCSSPath = '../assets/js/codemirror/mode/css/css.js';
     $appPath = '../assets/js/app.js';
     $stylePath = '../assets/css/blocks.style.css';
@@ -90,6 +91,14 @@ function rba_code_block_scripts()
             filemtime( plugin_dir_path(__FILE__) . $codemirrorJSPath )
         );
 
+        // Enqueue codemirror jsx mode on front end
+        wp_enqueue_script(
+            'rba-code-block-codemirrorJSX',
+            plugins_url( $codemirrorJSXPath, __FILE__ ),
+            [],
+            filemtime( plugin_dir_path(__FILE__) . $codemirrorJSXPath )
+        );
+
         // Enqueue codemirror css mode on front end
         wp_enqueue_script(
             'rba-code-block-codemirrorCSS',
@@ -97,6 +106,7 @@ function rba_code_block_scripts()
             [],
             filemtime( plugin_dir_path(__FILE__) . $codemirrorCSSPath )
         );
+
         // Enqueue app js on front end
         wp_enqueue_script(
             'rba-code-block-app',

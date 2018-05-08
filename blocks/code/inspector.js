@@ -28,9 +28,9 @@ export default class Inspector extends Component {
     render() {
         const { attributes: { language }, setAttributes, editor } = this.props;
 
-        function onChangeLanguage (language) {
+        const onChangeLanguage = function (language) {
             setAttributes( { language } );
-            editor.editorInstance.setOption( 'mode', language );
+            editor.setOption( 'mode', language );
         }
 
         return (
@@ -47,7 +47,8 @@ export default class Inspector extends Component {
                         options={ [
                             { label: 'HTML', value: 'htmlmixed' },
                             { label: 'CSS', value: 'css' },
-                            { label: 'JS', value: 'javascript' }
+                            { label: 'JS', value: 'javascript' },
+                            { label: 'JSX', value: 'jsx' }
                         ] }
                         onChange={ onChangeLanguage }
                     />
