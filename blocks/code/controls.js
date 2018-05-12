@@ -55,7 +55,6 @@ export default class Inspector extends Component {
                         </Button>
                     </Tooltip>
                 </Toolbar>
-
             </BlockControls>
         );
     }
