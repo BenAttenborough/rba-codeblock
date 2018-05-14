@@ -49,7 +49,8 @@ function rba_code_block_scripts()
     $appPath = '../assets/js/app.js';
     $stylePath = '../assets/css/blocks.style.css';
     $codemirrorStylePath = '../assets/css/codemirror.css';
-    $codemirrorDefaultThemeStylePath = '../assets/css/theme/' . $defaultTheme;
+//    $codemirrorStylePath = '../assets/css/theme/material.css';
+    $codemirrorDefaultThemeStylePath = '../assets/css/theme/material.css';
 
     if( !is_admin() ) {
         // Enqueue the bundled block JS file
@@ -123,9 +124,21 @@ function rba_code_block_scripts()
         [ 'wp-blocks' ],
         filemtime(plugin_dir_path(__FILE__) . $stylePath )
     );
+    wp_enqueue_style(
+        'rba-code-block-codemirror-eclipse-styles',
+        plugins_url($codemirrorDefaultThemeStylePath, __FILE__),
+        [ 'wp-blocks' ],
+        filemtime(plugin_dir_path(__FILE__) . $codemirrorDefaultThemeStylePath )
+    );
 
-    // Enqueue codemirror styles on front and backend
+    // Enqueue codemirror styles on frontend
     if( !is_admin() ) {
+        wp_enqueue_style(
+            'rba-code-block-blocks',
+            plugins_url($stylePath, __FILE__),
+            [ 'wp-blocks' ],
+            filemtime(plugin_dir_path(__FILE__) . $stylePath )
+        );
         wp_enqueue_style(
             'rba-code-block-codemirror-styles',
             plugins_url($codemirrorStylePath, __FILE__),

@@ -14,10 +14,9 @@ jQuery(document).ready(function ($) {
         CodeMirror(this, {
             value: $unescaped,
             mode: $mode,
-            //lineNumbers: !$this.is('.inline'),
             lineNumbers: $lineNumbers,
             readOnly: true,
-            //theme: 'material'
+            theme: 'material'
         });
 
     });

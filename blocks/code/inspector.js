@@ -26,11 +26,16 @@ export default class Inspector extends Component {
     }
 
     render() {
-        const { attributes: { language }, setAttributes, editor } = this.props;
+        const { attributes: { language, theme }, setAttributes, editor } = this.props;
 
         const onChangeLanguage = function (language) {
             setAttributes( { language } );
             editor.setOption( 'mode', language );
+        }
+
+        const onChangeTheme = function (theme) {
+            setAttributes( { theme } );
+            editor.setOption( 'theme', theme );
         }
 
         return (
@@ -51,6 +56,15 @@ export default class Inspector extends Component {
                             { label: 'JSX', value: 'jsx' }
                         ] }
                         onChange={ onChangeLanguage }
+                    />
+                    <RadioControl
+                        label={ __( 'Theme', 'rba_codeblock' ) }
+                        selected={ theme }
+                        options={ [
+                            { label: 'Light', value: 'default'},
+                            { label: 'Dark', value: 'material'}
+                        ]}
+                        onChange={ onChangeTheme }
                     />
                 </PanelBody>
 

@@ -38,13 +38,17 @@ export default registerBlockType(
                 type: 'string',
                 default: 'css'
             },
+            theme: {
+                type: 'string',
+                default: 'default'
+            },
             lineNumbers: {
                 type: 'boolean',
                 default: false
             }
         },
         edit: props => {
-            const { attributes: { content, language, lineNumbers }, isSelected, setAttributes } = props;
+            const { attributes: { content, language, theme, lineNumbers }, isSelected, setAttributes } = props;
             return [
                 isSelected && <Inspector { ...{setAttributes, ...props, ...{editor: this.editorInstance}}  } />,
                 isSelected && <Controls { ...{setAttributes, ...props, ...{editor: this.editorInstance}} } />,
@@ -58,6 +62,7 @@ export default registerBlockType(
                                     mode: language,
                                     lint: true,
                                     lineNumbers: lineNumbers,
+                                    theme: theme
                                 } },
                                     window._wpGutenbergCodeEditorSetting
 
@@ -68,12 +73,13 @@ export default registerBlockType(
             ];
         },
         save: props => {
-            const { attributes: { content, language, lineNumbers } } = props;
+            const { attributes: { content, language, theme, lineNumbers } } = props;
             return (
                 <div>
                     <p className="RBACode-heading">Language: {language}</p>
                         <pre className="RBACode"
                              data-mode={language}
+                             data-theme={theme}
                              data-linenumbers={lineNumbers}
                         >
                             { content }
